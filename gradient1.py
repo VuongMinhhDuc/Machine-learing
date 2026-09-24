@@ -1,0 +1,26 @@
+import numpy as np
+
+# 1. Định nghĩa hàm đạo hàm và hàm chi phí
+def grad(x):
+    return 2 * x 
+
+def cost(x):
+    return x**2 - 2
+
+# 2. Thuật toán Gradient Descent
+def myGD1(x0, eta):
+    x = [x0]
+    for it in range(100):
+        x_new = x[-1] - eta * grad(x[-1])
+        if abs(grad(x_new)) < 1e-3:  # Điều kiện dừng
+            break
+        x.append(x_new)
+    return (x, it)
+
+# 3. Chạy thuật toán với x0 = -5 và x0 = 5, eta = 0.1
+(x1, it1) = myGD1(-5, .1)
+(x2, it2) = myGD1(5, .1)
+
+# 4. In kết quả
+print('Solution x1 = %f, cost = %f, after %d iterations' % (x1[-1], cost(x1[-1]), it1))
+print('Solution x2 = %f, cost = %f, after %d iterations' % (x2[-1], cost(x2[-1]), it2))
